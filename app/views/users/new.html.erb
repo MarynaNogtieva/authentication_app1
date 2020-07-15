@@ -5,11 +5,15 @@
 <%= form_with scope: :user, url: { action: "create" },  local: true do |form| %>
   <div>
     <%= form.label :username%>
-  <%= form.text_field :username, id: 'username' %>
+    <%= form.text_field :username, id: 'username' %>
   </div>
   <div>
-  <%= form.label :password%>
-  <%= form.text_field :password, id: 'password'%>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :password%>
+    <%= form.password_field :password, id: 'password'%>
   </div>
   <%= form.submit %>
 <% end %>
