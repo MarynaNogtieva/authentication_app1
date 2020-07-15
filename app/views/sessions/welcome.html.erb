@@ -4,6 +4,7 @@
 
 <% if logged_in? %>
   <h2> <%= current_user.username %> </h2>
+  <%= button_to "Logout", '/logout', method: :get%>
 <% else %>
   <%= button_to "Login", '/login', method: :get%>
   <%= button_to "Sign Up", '/users/new', method: :get%>

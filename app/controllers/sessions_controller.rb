@@ -2,10 +2,7 @@
 
 class SessionsController < ApplicationController
   skip_before_action :authorized, only: %i[new create welcome]
-
-  def new
-    redirect_to('/welcome') if session[:user_id]
-  end
+  def new; end
 
   def create
     @user = User.find_by(username: params[:username])
@@ -24,4 +21,12 @@ class SessionsController < ApplicationController
   def welcome; end
 
   def page_requires_login; end
+
+  def destroy
+    session&.keys&.each do |key|
+      session.delete(key)
+    end
+
+    redirect_to('/welcome')
+  end
 end
