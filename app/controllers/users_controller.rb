@@ -2,13 +2,13 @@
 
 class UsersController < ApplicationController
   skip_before_action :authorized, only: %i[new create]
+
   def new
+    reset_session
     @user = User.new
   end
 
   def create
-    # https://guides.rubyonrails.org/v6.0/security.html#session-fixation-countermeasures
-    # protect you from session fixation.
     reset_session
     @user = User.new(user_params)
 
