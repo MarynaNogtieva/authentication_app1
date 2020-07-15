@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    # https://guides.rubyonrails.org/v6.0/security.html#session-fixation-countermeasures
+    # protect you from session fixation.
+    reset_session
     @user = User.new(user_params)
+
     if @user.save
       session[:user_id] = @user.id
       redirect_to('/welcome')
